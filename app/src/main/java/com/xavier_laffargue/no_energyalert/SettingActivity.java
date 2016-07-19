@@ -15,10 +15,12 @@ import java.io.IOException;
 
 public class SettingActivity extends ActionBarActivity {
 
-    private EditText numeroTelephone;
+    private EditText numeroTelephone, tokenAPI;
     private Button sauvegarder;
     private FileSetting fileSetting;
     public static String FILENAME = "settingPhoneNumber";
+    public static String TOKEN = "settingTokenApi";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +28,13 @@ public class SettingActivity extends ActionBarActivity {
         setContentView(R.layout.activity_setting);
 
         numeroTelephone = (EditText)findViewById(R.id.idTelephone);
+        tokenAPI = (EditText)findViewById(R.id.tokenAPI);
         sauvegarder = (Button)findViewById(R.id.idSauvegarder);
 
         fileSetting = new FileSetting();
 
         numeroTelephone.setText(fileSetting.readNumberPhone(getApplicationContext()));
+        tokenAPI.setText(fileSetting.readTokenAPI(getApplicationContext()));
 
         event();
     }
@@ -41,7 +45,10 @@ public class SettingActivity extends ActionBarActivity {
         sauvegarder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(fileSetting.writeNumberPhone(getApplicationContext(), numeroTelephone.getText().toString())) {
+
+
+                if(fileSetting.writeNumberPhone(getApplicationContext(), numeroTelephone.getText().toString())
+                        && fileSetting.writeTokenAPI(getApplicationContext(), tokenAPI.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "Données sauvegardées", Toast.LENGTH_LONG).show();
                     Intent setting = new Intent(SettingActivity.this, MainActivity.class);
                     startActivity(setting);

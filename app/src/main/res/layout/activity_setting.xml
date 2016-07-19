@@ -27,6 +27,20 @@
         android:ems="10"
         android:id="@+id/idTelephone" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Token API"
+        android:id="@+id/textView5"
+        android:layout_marginTop="50dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/tokenAPI" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
