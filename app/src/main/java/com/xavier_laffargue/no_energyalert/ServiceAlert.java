@@ -132,6 +132,8 @@ public class ServiceAlert extends Service {
         String  SENT = "SMS_SENT";
         String  DELIVERED = "SMS_DELIVERED";
 
+        final Intent intentUI = new Intent(BROADCAST_ACTION);
+
         PendingIntent sentPI = PendingIntent.getBroadcast(this, 0,
                 new Intent(SENT), 0);
 
@@ -145,24 +147,19 @@ public class ServiceAlert extends Service {
                 switch (getResultCode())
                 {
                     case Activity.RESULT_OK:
-                        Toast.makeText(getBaseContext(), "SMS sent",
-                                Toast.LENGTH_SHORT).show();
+                        intentUI.putExtra("TEXT", "SMS sent");
                         break;
                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                        Toast.makeText(getBaseContext(), "Generic failure",
-                                Toast.LENGTH_SHORT).show();
+                        intentUI.putExtra("TEXT", "Generic failure");
                         break;
                     case SmsManager.RESULT_ERROR_NO_SERVICE:
-                        Toast.makeText(getBaseContext(), "No service",
-                                Toast.LENGTH_SHORT).show();
+                        intentUI.putExtra("TEXT", "No service");
                         break;
                     case SmsManager.RESULT_ERROR_NULL_PDU:
-                        Toast.makeText(getBaseContext(), "Null PDU",
-                                Toast.LENGTH_SHORT).show();
+                        intentUI.putExtra("TEXT", "Null PDU");
                         break;
                     case SmsManager.RESULT_ERROR_RADIO_OFF:
-                        Toast.makeText(getBaseContext(), "Radio off",
-                                Toast.LENGTH_SHORT).show();
+                        intentUI.putExtra("TEXT", "Radio off");
                         break;
                 }
             }
@@ -175,12 +172,10 @@ public class ServiceAlert extends Service {
                 switch (getResultCode())
                 {
                     case Activity.RESULT_OK:
-                        Toast.makeText(getBaseContext(), "SMS delivered",
-                                Toast.LENGTH_SHORT).show();
+                        intentUI.putExtra("TEXT", "SMS delivered");
                         break;
                     case Activity.RESULT_CANCELED:
-                        Toast.makeText(getBaseContext(), "SMS not delivered",
-                                Toast.LENGTH_SHORT).show();
+                        intentUI.putExtra("TEXT", "SMS not delivered");
                         break;
                 }
             }
