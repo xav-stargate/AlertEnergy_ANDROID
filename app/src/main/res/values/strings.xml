@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">No-Energy Alert</string>
+    <string name="app_name">Blackout Alert</string>
+    <string name="website_name">Blackout-Alert.xyz</string>
 </resources>
